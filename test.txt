@@ -3,10 +3,4 @@ add anothor txt
 add another txt 
 add another txt 3
 another
-我创建了一个分支dev
-
-
-我在master上新增一行
-
-我创建了一个新分支，feature
-
+在dev上增加一行
