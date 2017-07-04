@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+
+
+<div id="app1">
+
+    <template v-if="ok">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </template>
+</div>
+
+
+<div v-if="type === 'A'">
+    A
+</div>
+<div v-else-if="type === 'B'">
+    B
+</div>
+<div v-else-if="type === 'C'">
+    C
+</div>
+<div v-else>
+    Not A/B/C
+</div>
+
+<div v-if="loginType === 'username'">
+    <label>Username</label>
+    <input placeholder="Enter your username">
+</div>
+<div v-else>
+    <label>Email</label>
+    <input placeholder="Enter your email address">
+</div>
+
+
+<div id="todo-list-example">
+    <input
+            v-model="newTodoText"
+            v-on:keyup.enter="addNewTodo"
+            placeholder="Add a todo"
+    >
+    <ul>
+        <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-bind:title="todo"
+                v-on:remove="todos.splice(index, 1)"
+        ></li>
+    </ul>
+</div>
+</body>
+
+<div id="app3">
+
+    <h1 v-show="true">Hello!</h1>
+
+</div>
+
+<div>你好</div>
+<script type="text/javascript">
+
+    Vue.component('todo-item', {
+        template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
+        props: ['title']
+    })
+    new Vue({
+        el: '#todo-list-example',
+        data: {
+            newTodoText: '',
+            todos: [
+                'Do the dishes',
+                'Take out the trash',
+                'Mow the lawn'
+            ]
+        },
+        methods: {
+            addNewTodo: function () {
+                this.todos.push(this.newTodoText)
+                this.newTodoText = ''
+            }
+        }
+    })
+    var vm3 = new Vue({
+        el:"#app3",
+        data:{
+            ok:true
+        }
+    })
+    var vm = new Vue({
+        el:"#app1",
+        data:{
+            ok:true
+        }
+    })
+
+    var vm1 = new Vue({
+
+        data:{
+            type:"A"
+        }
+    })
+</script>
+</html>

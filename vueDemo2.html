@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+
+<div id="app">
+    <span>Message: {{ msg }}</span>
+    <br>
+    <span v-once>Id is app, This will never change: {{ msg }}</span>
+</div>
+
+<div id="app3">
+    <p v-if="seen">现在你看到我了</p>
+</div>
+
+<div id="app2">
+    <span v-once>Id is app2,This will never change: {{ msg }}</span>
+</div>
+
+<div id="example">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+</div>
+</body>
+<script type="text/javascript">
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            seen:true
+        }
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello Vue!'
+        }
+    })
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            msg: 'Hello Vue2!'
+        }
+    })
+
+</script>
+</html>

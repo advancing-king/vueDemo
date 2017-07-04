@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+<div id="example-1">
+    <button v-on:click="counter += 1">增加 1</button>
+    <p>这个按钮被点击了 {{ counter }} 次。</p>
+</div>
+
+<div id="example-2">
+    <!-- `greet` 是在下面定义的方法名 -->
+    <button v-on:click="greet">Greet</button>
+</div>
+
+<div id="example-3">
+    <button v-on:click="say('hi')">Say hi</button>
+    <button v-on:click="say('what')">Say what</button>
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+        Submit
+    </button>
+
+    <!-- 阻止单击事件冒泡 -->
+    <a v-on:click.stop="doThis">click.stop</a>
+    <!-- 提交事件不再重载页面 -->
+    <form v-on:submit.prevent="onSubmit">submit.prevent</form>
+    <!-- 修饰符可以串联  -->
+    <a v-on:click.stop.prevent="doThat">click.stop.prevent</a>
+    <!-- 只有修饰符 -->
+    <form v-on:submit.prevent>submit.prevent</form>
+    <!-- 添加事件侦听器时使用事件捕获模式 -->
+    <div v-on:click.capture="doThis">click.capture</div>
+    <!-- 只当事件在该元素本身（比如不是子元素）触发时触发回调 -->
+    <div v-on:click.self="doThat">click.self</div>
+    <!-- 点击事件将只会触发一次 -->
+    <a v-on:click.once="doThisOnce">点我只运行一次click.once</a>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    new Vue({
+        el: '#example-3',
+        methods: {
+            say: function (message) {
+                alert(message)
+            },
+            warn: function (message, event) {
+                // 现在我们可以访问原生事件对象
+                if (event) event.preventDefault()
+                alert(message)
+                alert(event)
+            },
+            doThisOnce: function () {
+                alert(1)
+            }
+        }
+    })
+
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            name: 'Vue.js'
+        },
+        // 在 `methods` 对象中定义方法
+        methods: {
+            greet: function (event) {
+                // `this` 在方法里指当前 Vue 实例
+                alert('Hello ' + this.name + '!')
+                // `event` 是原生 DOM 事件
+                if (event) {
+                    alert(event.target.tagName)
+                }
+            }
+        }
+    })
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            counter: 0
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+<div id="app">
+    <input  v-model="message" placeholder="edit me">
+    <p>Message is: {{ message }}</p>
+
+
+</div>
+
+<div id="app2">
+    <span>Multiline message is:</span>
+    <p style="white-space: pre-line">{{ message }}</p>
+    <br>
+    <textarea v-model="message" placeholder="多行文本"></textarea>
+</div>
+
+<div id="app3">
+    <p>复选框checkbox选中为true 没选中为false</p>
+    <p>单个勾选框，逻辑值：</p>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <br>
+</div>
+
+<div id="example-3">
+    <p>多个勾选框，绑定到同一个数组：</p>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+</div>
+
+<div id="example-4">
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>Picked: {{ picked }}</span>
+</div>
+
+<!-- 如果 v-model 表达初始的值不匹配任何的选项，
+<select> 元素就会以”未选中”的状态渲染。
+在 iOS 中，这会使用户无法选择第一个选项，
+因为这样的情况下，iOS 不会引发 change 事件。
+因此，像以上提供 disabled 选项是建议的做法。 -->
+<div id="example-5">
+    <select v-model="selected">
+        <option disabled value="">select请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+
+<div id="example-6">
+    <p>多选列表</p>
+    <select v-model="selected" multiple style="width: 50px">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <br>
+    <span>Selected: {{ selected }}</span>
+</div>
+
+<div id="example-7">
+    <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+
+<input id="example-8" v-model.number="age" type="number" placeholder="输入的数字为number类型">
+
+<input id="example-9" v-model.trim="msg" placeholder="自动过滤首尾空格">
+
+<!-- 在 "change" 而不是 "input" 事件中更新 -->
+<input id="example-10" v-model.lazy="msg" placeholder="在 'change' 而不是 'input' 事件中更新" >
+
+
+</body>
+
+<script type="text/javascript">
+    var example10 = new Vue({
+        el: '#example-10',
+        data: {
+            msg:""
+
+        }
+    })
+    var example9 = new Vue({
+        el: '#example-9',
+        data: {
+            msg:""
+
+        }
+    })
+   var example8 = new Vue({
+        el: '#example-8',
+        data: {
+            age:123
+
+        }
+    })
+
+    new Vue({
+        el: '#example-7',
+        data: {
+            selected: 'A',
+            options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+            ]
+
+        }
+    })
+    new Vue({
+        el: '#example-6',
+        data: {
+            selected: []
+        }
+    })
+    new Vue({
+        el: '#example-5',
+        data: {
+            selected: ''
+        }
+    })
+    new Vue({
+        el: '#example-4',
+        data: {
+            picked: ''
+        }
+    })
+    new Vue({
+        el: '#example-3',
+        data: {
+            checkedNames: []
+        }
+    })
+
+
+    new Vue({
+        el: '#app3',
+        data: {
+            checked: false
+        }
+    })
+
+    var vm2 = new Vue({
+        el:"#app2",
+        data:{
+            message:""
+        }
+    })
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:""
+        }
+    })
+
+
+</script>
+</html>
